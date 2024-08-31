@@ -1,0 +1,20 @@
+[versions]
+agp = "8.5.2"
+kotlin = "1.9.22"
+xposed = "82"
+ezxhelper = "2.2.0"
+joor = "0.9.14"
+hiddenapi-refine = "4.4.0"
+
+[libraries]
+xposed = { module = "de.robv.android.xposed:api", version.ref = "xposed" }
+ezxhelper = { module = "com.github.kyuubiran:EzXHelper", version.ref = "ezxhelper" }
+joor = { module = "org.jooq:joor", version.ref = "joor" }
+hiddenapi-refine-annotation = { module = "dev.rikka.tools.refine:annotation", version.ref = "hiddenapi-refine" }
+hiddenapi-refine-annotation-processor = { module = "dev.rikka.tools.refine:annotation-processor", version.ref = "hiddenapi-refine" }
+
+[plugins]
+agp-app = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+hiddenapi-refine-plugin = { id = "dev.rikka.tools.refine", version.ref = "hiddenapi-refine" }
