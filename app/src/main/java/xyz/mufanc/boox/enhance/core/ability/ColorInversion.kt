@@ -1,14 +1,16 @@
 package xyz.mufanc.boox.enhance.core.ability
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import com.android.server.LocalServices
 import com.android.server.display.color.ColorDisplayService
 import com.android.server.display.color.DisplayTransformManager
 import com.github.kyuubiran.ezxhelper.Log
 import com.github.kyuubiran.ezxhelper.finders.FieldFinder.`-Static`.fieldFinder
+import xyz.mufanc.boox.enhance.core.CommandChannel
 
 @SuppressLint("PrivateApi")
-object ColorInversion {
+object ColorInversion : CommandChannel.ICommandHandler {
 
     private var mInverted = false
 
@@ -29,12 +31,14 @@ object ColorInversion {
             .get(null) as Int
     }
 
+    override fun action(): String = "INVERT_COLOR"
+
     @Synchronized
-    fun toggle() {
+    override fun onCommand(extras: Bundle?) {
         mInverted = !mInverted
 
         LocalServices.getService(DisplayTransformManager::class.java)
-            .setColorMatrix(LEVEL_COLOR_MATRIX_INVERT_COLOR, if (mInverted) MATRIX_INVERT_COLOR else null);
+            .setColorMatrix(LEVEL_COLOR_MATRIX_INVERT_COLOR, if (mInverted) MATRIX_INVERT_COLOR else null)
 
         Log.i("toggle color inversion")
     }

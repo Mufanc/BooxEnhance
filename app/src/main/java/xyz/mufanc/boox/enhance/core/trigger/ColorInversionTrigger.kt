@@ -1,14 +1,14 @@
 package xyz.mufanc.boox.enhance.core.trigger
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
-import xyz.mufanc.boox.enhance.core.CommandReceiver
+import xyz.mufanc.boox.enhance.core.CommandChannel
+import xyz.mufanc.boox.enhance.core.ability.ColorInversion
 
 class ColorInversionTrigger : Activity() {
     override fun onCreate(bundle: Bundle?) {
         super.onCreate(bundle)
-        sendBroadcast(Intent(CommandReceiver.ACTION_INVERT_COLOR))
+        CommandChannel.Emitter.emit(ColorInversion.action())
         finish()
     }
 }
